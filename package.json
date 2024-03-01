@@ -1,0 +1,9 @@
+{
+    "name": "agri_shop",
+    "description": "Agri shop for farmers - Farmers can utilize this service to learn more about how e-farming works and how they can use it to sell their products. This application will serve as a one-of-a-kind and secure method of agro-marketing.",
+    "version": "0.0.0",
+    "scripts": {
+        "client": "cd client && npm run dev",
+        "server": "cd server && npm run dev"
+    }
+}
