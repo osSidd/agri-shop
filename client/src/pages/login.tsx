@@ -1,6 +1,7 @@
 import { useState } from "react";
 
 import { Box, Button, Link, TextField, Typography } from "@mui/material";
+import { Link as RouteLink } from "react-router-dom";
 
 import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
@@ -39,9 +40,9 @@ export default function Login(){
             <Box width='100%'>
                 <Typography textAlign='center' fontSize={22}>Sign in {emailLogin? '' : 'using'}</Typography>
                 <Box mt={2} display={emailLogin? 'none' : 'flex'} flexDirection='column' alignItems='center'>
-                    <Button sx={{ ...btnSx,}}  disableElevation variant="contained" startIcon={<GoogleIcon/>} >Google</Button>
-                    <Button sx={{...btnSx, mt:2}}  disableElevation variant="contained" startIcon={<FacebookRoundedIcon/>} >Facebook</Button>
-                    <Button sx={{...btnSx, mt:2,}}  disableElevation variant="contained" startIcon={<XIcon/>} >Twitter</Button>
+                    <Button disabled sx={{ ...btnSx,}}  disableElevation variant="contained" startIcon={<GoogleIcon/>} >Google</Button>
+                    <Button disabled sx={{...btnSx, mt:2}}  disableElevation variant="contained" startIcon={<FacebookRoundedIcon/>} >Facebook</Button>
+                    <Button disabled sx={{...btnSx, mt:2,}}  disableElevation variant="contained" startIcon={<XIcon/>} >Twitter</Button>
                     <Button sx={{...btnSx, mt:2}}  disableElevation variant='contained' startIcon={<EnvelopeIcon/>} onClick={() => displayEmailLogin(true)}>Email</Button>                
                 </Box>
                 <Box display={emailLogin ? 'block': 'none'}>
@@ -59,7 +60,7 @@ export default function Login(){
                         <FormGroup>
                         <FormControlLabel control={<Checkbox/>} label="Remember me" />
                         </FormGroup>
-                        <Link fontFamily='roboto'>Forgot password?</Link>
+                        <Typography><RouteLink to='/reset-password'>Forgot password?</RouteLink></Typography>
                     </Box> 
                     <Box mt={2} textAlign='center'>
                         <Button sx={{...btnSx,}} fullWidth disableElevation variant='contained'>Sign in</Button>                
