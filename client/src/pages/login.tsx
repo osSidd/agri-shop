@@ -38,8 +38,8 @@ export default function Login(){
             minHeight='100vh'
         >
             <Box width='100%'>
-                <Typography textAlign='center' fontSize={22}>Sign in {emailLogin? '' : 'using'}</Typography>
-                <Box mt={2} display={emailLogin? 'none' : 'flex'} flexDirection='column' alignItems='center'>
+                <Typography variant="h4" textAlign='center'>Sign in {emailLogin? '' : 'using'}</Typography>
+                <Box mt={6} display={emailLogin? 'none' : 'flex'} flexDirection='column' alignItems='center'>
                     <Button disabled sx={{ ...btnSx,}}  disableElevation variant="contained" startIcon={<GoogleIcon/>} >Google</Button>
                     <Button disabled sx={{...btnSx, mt:2}}  disableElevation variant="contained" startIcon={<FacebookRoundedIcon/>} >Facebook</Button>
                     <Button disabled sx={{...btnSx, mt:2,}}  disableElevation variant="contained" startIcon={<XIcon/>} >Twitter</Button>

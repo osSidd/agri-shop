@@ -6,12 +6,14 @@ export default function PasswordReset(){
         <Box
             component='form'
             minHeight='100vh'
+            maxWidth={576}
+            mx='auto'
             display='flex'
             flexDirection='column'
             justifyContent='center'
             alignItems='center'
         >
-            <Box>
+            <Box width='100%'>
             <Typography component='h1' variant="h4">Forgot your password?</Typography>
             <Typography mt={2}  >
                 If you've forgotten your password, use the form below to request a link to change it. 
