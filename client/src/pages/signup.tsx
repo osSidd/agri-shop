@@ -1,13 +1,22 @@
 import { Box, Typography, Button, TextField, Select, MenuItem } from "@mui/material";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 
 export default function Signup(){
+
+    const [usertype, setUserType] = useState('other')
+
+    function handleUserTypeChange(value: string){
+        setUserType(value)
+    }
+
     return (
         <Box
             component='form'
             noValidate
             width='75%'
             mx='auto'
+            my={2}
             display='flex'
             justifyContent='center'
             alignItems='center'
@@ -25,8 +34,8 @@ export default function Signup(){
                             labelId="user-select-id"
                             id="user-select"
                             label="Select user type"
-                            value='user type'
-                            onChange={() => {}}
+                            value={usertype}
+                            onChange={(e:React.ChangeEvent) => handleUserTypeChange((e.target as HTMLElement).value)}
                             fullWidth
                         >
                             <MenuItem disabled value="user type">User type</MenuItem>
@@ -45,7 +54,35 @@ export default function Signup(){
                     </Box>
                     <Box mt={2}>
                         <TextField fullWidth id="password" label="Password" variant="outlined" type="password"/>
-                    </Box>                     
+                    </Box>
+                    {
+                        usertype === 'farmer' ? 
+                        <Box>
+                            <Box mt={2}>
+                                <TextField fullWidth id="gstin" label="GSTIN" variant="outlined" type="text"/>
+                            </Box>
+                            <Box mt={2}>
+                                <TextField fullWidth id="pan-no" label="PAN number" variant="outlined" type="text"/>
+                            </Box>
+                            <Box mt={2}>
+                                <TextField fullWidth id="address-1" label="Address (Line 1)" variant="outlined" type="text"/>
+                            </Box>
+                            <Box mt={2}>
+                                <TextField fullWidth id="address-2" label="Address (Line 2)" variant="outlined" type="text"/>
+                            </Box>
+                            <Box mt={2}>
+                                <TextField fullWidth id="place" label="Village/town/city" variant="outlined" type="text"/>
+                            </Box>
+                            <Box mt={2}>
+                                <TextField fullWidth id="block" label="Block/Gram panchayat" variant="outlined" type="text"/>
+                            </Box>
+                            <Box mt={2}>
+                                <TextField fullWidth id="state" label="State" variant="outlined" type="text"/>
+                            </Box>
+                        </Box> :
+                        <Box></Box>
+
+                    }                     
                     <Box mt={2} textAlign='center'>
                         <Button fullWidth disableElevation variant='contained'>Sign up</Button>                
                     </Box>
