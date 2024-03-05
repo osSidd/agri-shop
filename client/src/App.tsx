@@ -13,8 +13,9 @@ function App() {
     <BrowserRouter>
     <Suspense fallback={<>Loading...</>}>
       <Routes>
-        <Route index path="/login" element={<Wrapper><Login/></Wrapper>}/>
-        <Route path="/sign-up" element={<Signup/>}/>
+        <Route path = '/' element={<div><a href="/login">Login</a></div>}/>
+        <Route path="/login" element={<Wrapper><Login/></Wrapper>}/>
+        <Route path="/sign-up" element={<Wrapper><Signup/></Wrapper>}/>
         <Route path="/reset-password" element={<Wrapper><PasswordReset/></Wrapper>}/>
       </Routes>
       </Suspense>

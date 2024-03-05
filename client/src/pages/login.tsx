@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import { Box, Button, Link, TextField, Typography } from "@mui/material";
+import { Box, Button, TextField, Typography } from "@mui/material";
 import { Link as RouteLink } from "react-router-dom";
 
 import FormGroup from '@mui/material/FormGroup';
@@ -47,7 +47,7 @@ export default function Login(){
                 </Box>
                 <Box display={emailLogin ? 'block': 'none'}>
                     <Box display='flex' flexDirection='column' alignItems='start'  mt={2}>
-                        <Typography paddingLeft={1}>Not registered yet? <Link>Sign up</Link></Typography>         
+                        <Typography paddingLeft={1}>Not registered yet? <RouteLink to='/sign-up'>Sign up</RouteLink></Typography>         
                         <Button sx={{...btnSx, fontSize: 16, fontWeight:400, width: 'auto'}} onClick={() => displayEmailLogin(false)}>more sign in options</Button>                
                     </Box>
                     <Box mt={6}>
