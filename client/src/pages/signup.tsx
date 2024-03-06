@@ -1,4 +1,4 @@
-import { Box, Typography, Button, TextField, Select, MenuItem } from "@mui/material";
+import { Box, Typography, Button, TextField, Select, MenuItem, SelectChangeEvent } from "@mui/material";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
@@ -35,7 +35,7 @@ export default function Signup(){
                             id="user-select"
                             label="Select user type"
                             value={usertype}
-                            onChange={(e:React.ChangeEvent) => handleUserTypeChange((e.target as HTMLElement).value)}
+                            onChange={(e:SelectChangeEvent) => handleUserTypeChange((e.target as HTMLSelectElement).value)}
                             fullWidth
                         >
                             <MenuItem disabled value="user type">User type</MenuItem>
