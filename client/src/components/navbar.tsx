@@ -14,7 +14,7 @@ import MenuItem from '@mui/material/MenuItem';
 import GrassIcon from '@mui/icons-material/Grass';
 import { Link } from 'react-router-dom';
 
-const pages = ['Products', 'Cart', 'About'];
+const pages = [{label: 'Products', href:'/add-product'}, {label: 'Cart', href: '#'}];
 const settings = ['Profile', 'Account', 'Dashboard', 'Wallet', 'Order status', 'Logout'];
 const linkStyle = {textDecoration:"none"}
 
@@ -92,8 +92,8 @@ function Navbar() {
               }}
             >
               {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{page}</Typography>
+                <MenuItem key={page.label} onClick={handleCloseNavMenu}>
+                  <Typography textAlign="center">{page.label}</Typography>
                 </MenuItem>
               ))}
             </Menu>
@@ -119,13 +119,14 @@ function Navbar() {
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex', justifyContent:'flex-end' } }}>
             {pages.map((page) => (
+              <Link to={page.href} key={page.label}>
               <Button
-                key={page}
                 onClick={handleCloseNavMenu}
                 sx={{ my: 2, color: 'white', display: 'block' }}
               >
-                {page}
+                {page.label}
               </Button>
+              </Link>
             ))}
           </Box>
 

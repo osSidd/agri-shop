@@ -1,10 +1,9 @@
 import { Box, Typography } from "@mui/material";
-import Navbar from "../../components/navbar";
 
 export default function Homepage(){
+    
     return (
         <Box>
-            <Navbar/>
             <Box minHeight='100vh' bgcolor='error.light'>
                 <Typography lineHeight='100vh' mx='auto' width='fit-content' variant="h2">Carousel of products</Typography>
             </Box>
