@@ -5,6 +5,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom"
 import Wrapper from "./pages/user/wrapper"
 import Navbar from "./components/navbar"
 import { Container } from '@mui/material'
+import Footer from './components/footer'
 
 const Login = lazy(() => import('./pages/user/login'))
 const Signup = lazy(() => import('./pages/user/signup'))
@@ -19,17 +20,22 @@ function App() {
   return (
     <Container maxWidth='xl'>
     <BrowserRouter>
-    <Navbar/>
-    <Suspense fallback={<>Loading...</>}>
-      <Routes>
-        <Route path = '/' element={<Homepage/>}/>
-        <Route path = '/add-product' element={<ProductForm/>}/>
-        <Route path='/cart' element={<Cart/>}/>
-        <Route path="/login" element={<Wrapper><Login/></Wrapper>}/>
-        <Route path="/sign-up" element={<Wrapper><Signup/></Wrapper>}/>
-        <Route path="/reset-password" element={<Wrapper><PasswordReset/></Wrapper>}/>
-      </Routes>
+    <header>
+      <Navbar/>
+    </header>
+    <main>
+      <Suspense fallback={<>Loading...</>}>
+        <Routes>
+          <Route path = '/' element={<Homepage/>}/>
+          <Route path = '/add-product' element={<ProductForm/>}/>
+          <Route path='/cart' element={<Cart/>}/>
+          <Route path="/login" element={<Wrapper><Login/></Wrapper>}/>
+          <Route path="/sign-up" element={<Wrapper><Signup/></Wrapper>}/>
+          <Route path="/reset-password" element={<Wrapper><PasswordReset/></Wrapper>}/>
+        </Routes>
       </Suspense>
+    </main>
+    <Footer/>
     </BrowserRouter>
     </Container>
   )
