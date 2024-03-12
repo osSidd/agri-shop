@@ -12,6 +12,8 @@ const PasswordReset = lazy(() => import('./pages/user/passwordReset'))
 
 const Homepage = lazy(() => import('./pages/homepage/homepage'))
 const ProductForm = lazy(() => import('./pages/farmer/productForm'))
+const Cart = lazy(() => import('./pages/consumer/cart'))
+
 function App() {
 
   return (
@@ -22,6 +24,7 @@ function App() {
       <Routes>
         <Route path = '/' element={<Homepage/>}/>
         <Route path = '/add-product' element={<ProductForm/>}/>
+        <Route path='/cart' element={<Cart/>}/>
         <Route path="/login" element={<Wrapper><Login/></Wrapper>}/>
         <Route path="/sign-up" element={<Wrapper><Signup/></Wrapper>}/>
         <Route path="/reset-password" element={<Wrapper><PasswordReset/></Wrapper>}/>

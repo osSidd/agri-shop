@@ -14,7 +14,7 @@ import MenuItem from '@mui/material/MenuItem';
 import GrassIcon from '@mui/icons-material/Grass';
 import { Link } from 'react-router-dom';
 
-const pages = [{label: 'Products', href:'/add-product'}, {label: 'Cart', href: '#'}];
+const pages = [{label: 'Add a product', href:'/add-product'}, {label: 'My cart', href: '/cart'}];
 const settings = ['Profile', 'Account', 'Dashboard', 'Wallet', 'Order status', 'Logout'];
 const linkStyle = {textDecoration:"none"}
 
