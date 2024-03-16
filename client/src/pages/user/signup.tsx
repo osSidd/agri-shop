@@ -40,7 +40,7 @@ export default function Signup(){
                         >
                             <MenuItem disabled value="user type">User type</MenuItem>
                             <MenuItem value="farmer">Farmer</MenuItem>
-                            <MenuItem value="other">Other</MenuItem>
+                            <MenuItem value="consumer">Consumer</MenuItem>
                         </Select>
                     </Box>
                     <Box mt={2}>
