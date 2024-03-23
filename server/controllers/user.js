@@ -1,10 +1,13 @@
 const { default: mongoose } = require('mongoose')
 const User = require('../models/user/user')
+const bcrypt = require('bcrypt')
 
 //create new user
 const createUser = async (req, res) => {
     try{        
-        const user = await User.create(req.body)
+        const password = await bcrypt.hash(req.body.password, 10)
+
+        const user = await User.create({...req.body, password})
         return res.status(201).json(user)
     }catch(err){
         return res.status(400).json({error: err.message})
