@@ -16,6 +16,29 @@ const FarmerSchema = new Schema({
             validator: v => v.length === 15 && /^[0-9]{2}[A-Z]{5}[0-9]{4}[A-Z]{1}[1-9A-Z]{1}Z[0-9A-Z]{1}$/.test(v),
             message: 'invalid gstin',
         }
+    },
+    pan: {
+        type: String,
+        required: true,
+        validate:{
+            validator: v => /[A-Z]{5}[0-9]{4}[A-Z]{1}/.test(v),
+            message: 'invalid pan number',
+        }
+    },
+    place: {
+        type: String,
+        required: true,
+        minLength: 3,
+    },
+    panchayat: {
+        type: String,
+        required: true,
+        minLength: 3,
+    },
+    state: {
+        type: String,
+        required: true,
+        minLength: 3,
     }
 })
 
