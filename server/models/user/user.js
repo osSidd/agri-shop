@@ -8,7 +8,7 @@ const UserSchema = new Schema({
         minLength: [3, 'name is too short'],
         maxLength: [50, 'name cannot exceed 50 characters length'],
         validate:{
-            validator: v => /[a-z][A-z]/.test(v),
+            validator: v => /^[a-zA-Z ]+$/i.test(v),
             message: 'Name must contain only alphabets'
         }
     },
@@ -20,7 +20,7 @@ const UserSchema = new Schema({
     username: {
         type: String,
         require: true,
-        unique: [true, 'Username not available'],
+        unique: [true, 'Username already taken'],
         minLength: 5,
         maxLength: 30,
     },
@@ -29,23 +29,26 @@ const UserSchema = new Schema({
         require: true,
         unique: [true, 'mobile number already exists'],
         validate: {
-            validator: v => /[0-9]/.test(v) && v.length === 10
+            validator: v => /^[0-9]+$/.test(v) && v.length === 10, 
+            message: 'invalid mobile number',
         }
     },
     email:{
         type: String,
         unique: [true, 'email id already exists'],
         require: true,
-        // validate:{
-        //     validator: v => /[a-z][A-Z][0-9]@./.test(v)
-        // }
+        validate:{
+            validator: v => /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(v),
+            message: 'invalid email',
+        }
     },
     password: {
         type: String,
         require: true,
         minLength: [8, 'password must have a minimum of 8 characters'],
         validate:{
-            validator: v => /[a-z][A-Z][0-9]/i.test(v)
+            validator: v => /^((?=\S*?[A-Z])(?=\S*?[a-z])(?=\S*?[0-9]).{6,})\S$/.test(v) && v.length >= 8,
+            message: "password doesn't meets the mentioned criteria",
         }
     }
 })
