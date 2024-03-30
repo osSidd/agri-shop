@@ -1,14 +1,15 @@
-import { Box, Typography, Button, TextField, Select, MenuItem, SelectChangeEvent } from "@mui/material";
-import { useState } from "react";
+import { Box, Typography, Button, TextField} from "@mui/material";
+//  Select, MenuItem, SelectChangeEvent } 
+// import { useState } from "react";
 import { Link } from "react-router-dom";
 
 export default function Signup(){
 
-    const [usertype, setUserType] = useState('other')
+    // const [usertype, setUserType] = useState('other')
 
-    function handleUserTypeChange(value: string){
-        setUserType(value)
-    }
+    // function handleUserTypeChange(value: string){
+    //     setUserType(value)
+    // }
 
     return (
         <Box
@@ -29,7 +30,7 @@ export default function Signup(){
                     <Box mt={6}>
                         <TextField fullWidth id="name" label="Full name" variant="outlined" type="text" />
                     </Box>
-                    <Box mt={2}>
+                    {/* <Box mt={2}>
                         <Select
                             labelId="user-select-id"
                             id="user-select"
@@ -48,14 +49,14 @@ export default function Signup(){
                     </Box>
                     <Box mt={2}>
                         <TextField fullWidth id="mobile" label="Mobile number" variant="outlined" type="text"/>
-                    </Box>
+                    </Box> */}
                     <Box mt={2}>
                         <TextField fullWidth id="email" label="Email id" variant="outlined" type="email" />
                     </Box>
                     <Box mt={2}>
                         <TextField fullWidth id="password" label="Password" variant="outlined" type="password"/>
                     </Box>
-                    {
+                    {/* {
                         usertype === 'farmer' ? 
                         <Box>
                             <Box mt={2}>
@@ -82,7 +83,7 @@ export default function Signup(){
                         </Box> :
                         <Box></Box>
 
-                    }                     
+                    }                      */}
                     <Box mt={2} textAlign='center'>
                         <Button fullWidth disableElevation variant='contained'>Sign up</Button>                
                     </Box>
