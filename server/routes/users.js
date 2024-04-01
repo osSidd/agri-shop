@@ -1,13 +1,17 @@
 var express = require('express');
 var router = express.Router();
-var {createUser} = require('../controllers/user')
+var {createUser, loginUser} = require('../controllers/user')
+var auth = require('../middleware/auth')
 
 /* GET users listing. */
-router.get('/', function(req, res, next) {
+router.get('/', auth, function(req, res, next) {
   res.send('respond with a resource');
 });
 
-//create a new user
-router.post('/', createUser)
+//register user
+router.post('/register', createUser)
+
+//login user
+router.post('/login', loginUser)
 
 module.exports = router;

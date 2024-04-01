@@ -12,27 +12,6 @@ const UserSchema = new Schema({
             message: 'Name must contain only alphabets'
         }
     },
-    usertype: {
-        type: String,
-        required: true,
-        enum: ['farmer', 'consumer']
-    },
-    username: {
-        type: String,
-        require: true,
-        unique: [true, 'Username already taken'],
-        minLength: 5,
-        maxLength: 30,
-    },
-    mobile:{
-        type: String,
-        require: true,
-        unique: [true, 'mobile number already exists'],
-        validate: {
-            validator: v => /^[0-9]+$/.test(v) && v.length === 10, 
-            message: 'invalid mobile number',
-        }
-    },
     email:{
         type: String,
         unique: [true, 'email id already exists'],
