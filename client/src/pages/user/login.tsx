@@ -1,7 +1,7 @@
-import { useState } from "react";
+import { useState, ChangeEvent, SyntheticEvent } from "react";
 
 import { Box, Button, TextField, Typography } from "@mui/material";
-import { Link as RouteLink } from "react-router-dom";
+import { Link as RouteLink, useNavigate } from "react-router-dom";
 
 import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
@@ -14,6 +14,7 @@ import EnvelopeIcon from '@mui/icons-material/Mail';
 export default function Login(){
 
     const [emailLogin, setEmailLogin] = useState(false)
+    const navigate = useNavigate()
 
     const btnSx= {
         textTransform: 'initial',
@@ -26,6 +27,40 @@ export default function Login(){
         setEmailLogin(boolOption)
     }
 
+    const [userForm, setUserForm] = useState({
+        email: '',
+        password: ''
+    })
+
+    function handleChange(e: ChangeEvent){
+        const {name, value} = e.target as HTMLInputElement
+
+        setUserForm(prev => ({
+            ...prev,
+            [name] : value
+        }))
+    }
+
+    async function submitData(e: SyntheticEvent){
+        e.preventDefault()
+        try{
+            const response = await fetch('http://localhost:3000/users/login', {
+                method:"POST",
+                headers:{
+                    'Content-Type':'application/json'
+                },
+                body: JSON.stringify(userForm)
+            })
+
+            if(response.ok){
+                const data = await response.json()
+                localStorage.setItem('token', data.token)
+            }
+        }catch(err){
+            console.log(err.message)
+        }
+    }
+
     return (
         <Box
             component='form'
@@ -36,6 +71,7 @@ export default function Login(){
             justifyContent='center'
             alignItems='center'
             minHeight='100vh'
+            onSubmit={submitData}
         >
             <Box width='100%'>
                 <Typography variant="h4" textAlign='center'>Sign in {emailLogin? '' : 'using'}</Typography>
@@ -51,10 +87,31 @@ export default function Login(){
                         <Button sx={{...btnSx, fontSize: 16, fontWeight:400, width: 'auto'}} onClick={() => displayEmailLogin(false)}>more sign in options</Button>                
                     </Box>
                     <Box mt={6}>
-                        <TextField fullWidth id="email" label="Email" variant="outlined" type="email" />
+                        <TextField 
+                            fullWidth 
+                            id="email" 
+                            label="Email" 
+                            variant="outlined" 
+                            type="email"
+                            required
+                            name="email"
+                            value={userForm.email}
+                            onChange={handleChange}
+
+                        />
                     </Box>
                     <Box mt={2}>
-                        <TextField fullWidth id="password" label="Password" variant="outlined" type="password"/>
+                        <TextField 
+                            fullWidth 
+                            id="password" 
+                            label="Password" 
+                            variant="outlined" 
+                            type="password"
+                            required
+                            name="password"
+                            value={userForm.password}
+                            onChange={handleChange}
+                        />
                     </Box>
                     <Box mt={2} display='flex' alignItems='center' justifyContent='space-between'>
                         <FormGroup>
@@ -63,7 +120,13 @@ export default function Login(){
                         <Typography><RouteLink to='/reset-password'>Forgot password?</RouteLink></Typography>
                     </Box> 
                     <Box mt={2} textAlign='center'>
-                        <Button sx={{...btnSx,}} fullWidth disableElevation variant='contained'>Sign in</Button>                
+                        <Button 
+                            type="submit" 
+                            sx={{...btnSx,}} 
+                            fullWidth 
+                            disableElevation 
+                            variant='contained'
+                        >Sign in</Button>                
                     </Box>
                     <Box textAlign='center' mt={3}>
                     </Box>  

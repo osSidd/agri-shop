@@ -10,7 +10,7 @@ const createUser = async (req, res) => {
         password = await bcrypt.hash(req.body.password, 10)
 
         const user = await User.create({name, email, password})
-        return res.status(201).json({user})
+        return res.status(201).json({status: 'SUCCESS'})
     }catch(err){
         return res.status(400).json({error: err.message})
     }
@@ -27,7 +27,7 @@ const loginUser = async (req, res, next) => {
         const match =  bcrypt.compare(password, user.password)
         if(!match) return res.status(404).json({error: 'password doesnot matches'})
 
-        const token = jwt.sign(user.email, process.env.jwt_secret, {expiresIn: '1h'})
+        const token = jwt.sign(user.email, process.env.jwt_secret)
 
         return res.status(200).json({token})
     
