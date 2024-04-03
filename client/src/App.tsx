@@ -3,9 +3,8 @@ import { Suspense, lazy } from "react"
 import { BrowserRouter, Routes, Route } from "react-router-dom"
 
 import Wrapper from "./pages/user/wrapper"
-import Navbar from "./components/navbar"
-import { Container } from '@mui/material'
 import Footer from './components/footer'
+import Navbar from './components/navbar/navbar'
 
 const Login = lazy(() => import('./pages/user/login'))
 const Signup = lazy(() => import('./pages/user/signup'))
@@ -18,7 +17,6 @@ const Cart = lazy(() => import('./pages/consumer/cart'))
 function App() {
 
   return (
-    <Container maxWidth='xl'>
     <BrowserRouter>
     <header>
       <Navbar/>
@@ -37,7 +35,6 @@ function App() {
     </main>
     <Footer/>
     </BrowserRouter>
-    </Container>
   )
 }
 
