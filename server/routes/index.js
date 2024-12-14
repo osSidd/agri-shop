@@ -1,11 +1,20 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express')
+const {addProduct} = require('../controllers/farmerController')
 
-router.get('/', (req,res) => {
-    // for(let i=0; i<=100000; i++){
-    //     console.log('hi there')
-    // }
-    res.send('Home page for blogs')
+const router = express.Router()
+
+
+
+router.get('/', (req, res) => {
+    console.log('Hello World')
+    res.send("All products")
 })
 
-module.exports = router;
+router.get('/add', addProduct)
+
+router.get('/logout', (req, res) => {
+    res.send('hi hterwrwerw')
+})
+
+
+module.exports = router

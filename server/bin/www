@@ -7,73 +7,7 @@
 var app = require('../app');
 var debug = require('debug')('server:server');
 var http = require('http');
-const mongoose = require('mongoose')
 
-// const {ApolloServer} = require('@apollo/server')
-// const {startStandaloneServer} = require('@apollo/server/standalone')
-
-// const typeDefs = `#graphql
-//   type Article{
-//     title: String
-//     snippet: String!
-//     body: String
-//   }
-  
-//   type Comment{
-//     title: String
-//     body: String
-//     author: Author
-//   }
-
-//   type Author{
-//     name: String
-//     comments: [Comment]
-//   }
-
-//   type Query{
-//     articles: [Article]
-//     comments:[Comment]
-//     authors:[Author]
-//   }
-
-//   type Mutation{
-//     addArticle(title: String, snippet: String, body:String): Article
-//   }
-// `
-// const articles = [
-//   {
-//     title: 'Lorem ipsum',
-//     snippet:'Lorem ipsum dolor sit amet',
-//     body: 'lorem ipsum dolor sit amet consectur esfwe, rwer,sarter wickwed'
-//   },
-//   {
-//     title: 'Lorem ipsum',
-//     snippet: 'Lorem ipsum dolor sit amet',
-//     body: 'lorem ipsum dolor sit amet consectur esfwe, rwer,sarter wickwed'
-//   },
-//   {
-//     title: 'Lorem ipsum',
-//     snippet: 'Lorem ipsum dolor sit amet',
-//     body: 'lorem ipsum dolor sit amet consectur esfwe, rwer,sarter wickwed'
-//   }
-// ]
-
-// const resolvers = {
-//   Query:{
-//     articles: () => articles,
-//   },
-// }
-
-// const server = new ApolloServer({
-//   typeDefs,
-//   resolvers,
-//   introspection: true
-// })
-
-const DB_URI = process.env.NODE_ENV === 'production' ? process.env.DB_URI : process.env.LOCAL_URI
-
-mongoose.connect(DB_URI)
-const db = mongoose.connection
 
 // async function listenRequest(){
 //   const {url} = await startStandaloneServer(server, {
@@ -110,16 +44,9 @@ var server = http.createServer(app);
  * Normalize a port into a number, string, or false.
  */
 
-db.on('open', () => {
   server.listen(port);
   server.on('error', onError);
-  console.log('db connected')
   server.on('listening', onListening);
-})
-
-db.on('error', (err) => {
-  console.log(err.message)
-})
 
 
 function normalizePort(val) {
@@ -178,3 +105,184 @@ function onListening() {
     : 'port ' + addr.port;
   debug('Listening on ' + bind);
 }
+
+// #!/usr/bin/env node
+
+// /**
+//  * Module dependencies.
+//  */
+
+// var app = require('../app');
+// var debug = require('debug')('server:server');
+// var http = require('http');
+// const mongoose = require('mongoose')
+
+// // const {ApolloServer} = require('@apollo/server')
+// // const {startStandaloneServer} = require('@apollo/server/standalone')
+
+// // const typeDefs = `#graphql
+// //   type Article{
+// //     title: String
+// //     snippet: String!
+// //     body: String
+// //   }
+  
+// //   type Comment{
+// //     title: String
+// //     body: String
+// //     author: Author
+// //   }
+
+// //   type Author{
+// //     name: String
+// //     comments: [Comment]
+// //   }
+
+// //   type Query{
+// //     articles: [Article]
+// //     comments:[Comment]
+// //     authors:[Author]
+// //   }
+
+// //   type Mutation{
+// //     addArticle(title: String, snippet: String, body:String): Article
+// //   }
+// // `
+// // const articles = [
+// //   {
+// //     title: 'Lorem ipsum',
+// //     snippet:'Lorem ipsum dolor sit amet',
+// //     body: 'lorem ipsum dolor sit amet consectur esfwe, rwer,sarter wickwed'
+// //   },
+// //   {
+// //     title: 'Lorem ipsum',
+// //     snippet: 'Lorem ipsum dolor sit amet',
+// //     body: 'lorem ipsum dolor sit amet consectur esfwe, rwer,sarter wickwed'
+// //   },
+// //   {
+// //     title: 'Lorem ipsum',
+// //     snippet: 'Lorem ipsum dolor sit amet',
+// //     body: 'lorem ipsum dolor sit amet consectur esfwe, rwer,sarter wickwed'
+// //   }
+// // ]
+
+// // const resolvers = {
+// //   Query:{
+// //     articles: () => articles,
+// //   },
+// // }
+
+// // const server = new ApolloServer({
+// //   typeDefs,
+// //   resolvers,
+// //   introspection: true
+// // })
+
+// const DB_URI = process.env.NODE_ENV === 'production' ? process.env.DB_URI : process.env.LOCAL_URI
+
+// mongoose.connect(DB_URI)
+// const db = mongoose.connection
+
+// // async function listenRequest(){
+// //   const {url} = await startStandaloneServer(server, {
+// //     listen: {port: 4000},
+// //   })
+
+// //   console.log('server ready at', url)
+// // }
+
+// // listenRequest()
+
+// /**
+//  * Get port from environment and store in Express.
+//  */
+
+// var port = normalizePort(process.env.PORT || '4000');
+// app.set('port', port);
+
+// /**
+//  * Create HTTP server.
+//  */
+
+// var server = http.createServer(app);
+
+// /**
+//  * Listen on provided port, on all network interfaces.
+//  */
+
+// // db.on('open', () => {
+// //   console.log('db connected')
+// // })
+
+// /**
+//  * Normalize a port into a number, string, or false.
+//  */
+
+// db.on('open', () => {
+//   server.listen(port);
+//   server.on('error', onError);
+//   console.log('db connected')
+//   server.on('listening', onListening);
+// })
+
+// db.on('error', (err) => {
+//   console.log(err.message)
+// })
+
+
+// function normalizePort(val) {
+//   var port = parseInt(val, 10);
+
+//   if (isNaN(port)) {
+//     // named pipe
+//     return val;
+//   }
+
+//   if (port >= 0) {
+//     // port number
+//     return port;
+//   }
+
+//   return false;
+// }
+
+// /**
+//  * Event listener for HTTP server "error" event.
+//  */
+
+// function onError(error) {
+//   if (error.syscall !== 'listen') {
+//     throw error;
+//   }
+
+//   var bind = typeof port === 'string'
+//     ? 'Pipe ' + port
+//     : 'Port ' + port;
+
+//   // handle specific listen errors with friendly messages
+//   switch (error.code) {
+//     case 'EACCES':
+//       console.error(bind + ' requires elevated privileges');
+//       process.exit(1);
+//       break;
+//     case 'EADDRINUSE':
+//       console.error(bind + ' is already in use');
+//       process.exit(1);
+//       break;
+//     default:
+//       throw error;
+//   }
+// }
+
+// /**
+//  * Event listener for HTTP server "listening" event.
+//  */
+
+// function onListening() {
+//   console.log('listening on port ', port)
+//   var addr = server.address();
+//   var bind = typeof addr === 'string'
+//     ? 'pipe ' + addr
+//     : 'port ' + addr.port;
+//   debug('Listening on ' + bind);
+// }
