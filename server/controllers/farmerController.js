@@ -6,6 +6,16 @@ const addProduct = async (req, res) => {
     }
 }
 
+const allProduct = async (req, res) => {
+    try{
+        return res.status(200).json({product: "All products"})
+    }catch(err){
+        return res.status(400).json({error: err.message})
+    }
+}
+
+
 module.exports = {
     addProduct,
+    allProduct,
 }

@@ -1,14 +1,14 @@
 const express = require('express')
-const {addProduct} = require('../controllers/farmerController')
+const {
+    addProduct,
+    allProduct,
+} = require('../controllers/farmerController')
 
 const router = express.Router()
 
 
 
-router.get('/', (req, res) => {
-    console.log('Hello World')
-    res.send("All products")
-})
+router.get('/', allProduct)
 
 router.get('/add', addProduct)
 
