@@ -1,7 +1,12 @@
 const express = require('express')
+var dotenv = require('dotenv')
+dotenv.config()
+
 const indexRouter = require('./routes/index')
 
 const app = express();
+
+app.use(express.json())
 
 app.use('/api', indexRouter)
 
@@ -20,8 +25,6 @@ var express = require('express');
 var path = require('path');
 
 var helmet = require('helmet')
-var dotenv = require('dotenv')
-dotenv.config()
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const cors = require('cors')

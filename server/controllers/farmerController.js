@@ -1,6 +1,9 @@
+const Product = require('../models/farmer/product')
+
 const addProduct = async (req, res) => {
     try{
-        return res.status(200).json({product: "New Product"})
+        const product = await Product.create({...req.body})
+        return res.status(200).json(product)
     }catch(err){
         return res.status(400).json({error: err.message})
     }
@@ -8,7 +11,8 @@ const addProduct = async (req, res) => {
 
 const allProduct = async (req, res) => {
     try{
-        return res.status(200).json({product: "All products"})
+        const products = await Product.find()
+        return res.status(200).json(products)
     }catch(err){
         return res.status(400).json({error: err.message})
     }

@@ -7,6 +7,12 @@
 var app = require('../app');
 var debug = require('debug')('server:server');
 var http = require('http');
+var mongoose = require('mongoose')
+
+const DB_URI = process.env.NODE_ENV === 'production' ? process.env.DB_URI : process.env.LOCAL_URI
+
+mongoose.connect(DB_URI)
+const db = mongoose.connection
 
 
 // async function listenRequest(){
@@ -36,17 +42,25 @@ var server = http.createServer(app);
  * Listen on provided port, on all network interfaces.
  */
 
-// db.on('open', () => {
-//   console.log('db connected')
-// })
+db.on('open', () => {
+  server.listen(port);
+  server.on('error', onError);
+  console.log('db connected')
+  server.on('listening', onListening);
+})
+
+db.on('error', (err) => {
+  console.log(err.message)
+})
+
 
 /**
  * Normalize a port into a number, string, or false.
  */
 
-  server.listen(port);
-  server.on('error', onError);
-  server.on('listening', onListening);
+  // server.listen(port);
+  // server.on('error', onError);
+  // server.on('listening', onListening);
 
 
 function normalizePort(val) {
@@ -178,11 +192,6 @@ function onListening() {
 // //   introspection: true
 // // })
 
-// const DB_URI = process.env.NODE_ENV === 'production' ? process.env.DB_URI : process.env.LOCAL_URI
-
-// mongoose.connect(DB_URI)
-// const db = mongoose.connection
-
 // // async function listenRequest(){
 // //   const {url} = await startStandaloneServer(server, {
 // //     listen: {port: 4000},
@@ -218,16 +227,6 @@ function onListening() {
 //  * Normalize a port into a number, string, or false.
 //  */
 
-// db.on('open', () => {
-//   server.listen(port);
-//   server.on('error', onError);
-//   console.log('db connected')
-//   server.on('listening', onListening);
-// })
-
-// db.on('error', (err) => {
-//   console.log(err.message)
-// })
 
 
 // function normalizePort(val) {
