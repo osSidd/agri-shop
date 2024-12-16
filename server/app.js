@@ -2,13 +2,13 @@ const express = require('express')
 var dotenv = require('dotenv')
 dotenv.config()
 
-const indexRouter = require('./routes/index')
+const farmerRouter = require('./routes/farmer/product')
 
 const app = express();
 
 app.use(express.json())
 
-app.use('/api', indexRouter)
+app.use('/api', farmerRouter)
 
 module.exports = app
 
