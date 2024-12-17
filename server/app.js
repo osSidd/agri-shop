@@ -3,12 +3,14 @@ var dotenv = require('dotenv')
 dotenv.config()
 
 const farmerRouter = require('./routes/farmer/product')
+const usersRouter = require('./routes/user/user')
 
 const app = express();
 
 app.use(express.json())
 
 app.use('/api', farmerRouter)
+app.use('/user', usersRouter)
 
 module.exports = app
 
