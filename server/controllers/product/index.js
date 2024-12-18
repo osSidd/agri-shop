@@ -1,5 +1,5 @@
 const { default: mongoose } = require('mongoose')
-const Product = require('../../models/farmer/product')
+const Product = require('../../models/farmer')
 
 //add new product
 const addProduct = async (req, res) => {

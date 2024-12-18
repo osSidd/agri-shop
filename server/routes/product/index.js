@@ -5,24 +5,26 @@ const {
     deleteProduct,
     getProduct,
     patchProduct,
-} = require('../../controllers/farmer/productController')
+} = require('../../controllers/product')
+
+const {auth} = require('../../middleware/authentication')
 
 const router = express.Router()
 
 //get all products
-router.get('/all', allProduct)
+router.get('/', allProduct)
+
+//add new product
+router.post('/', auth, addProduct)
 
 //get a specific product
 router.get('/:id', getProduct)
 
-//add new product
-router.post('/add', addProduct)
-
 //patch an existing product
-router.patch('/:id', patchProduct)
+router.patch('/:id', auth, patchProduct)
 
-//delte a product
-router.delete('/:id', deleteProduct)
+//delete a product
+router.delete('/:id', auth, deleteProduct)
 
 
 module.exports = router
